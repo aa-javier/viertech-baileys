@@ -1,14 +1,30 @@
 {
   "name": "@viertechjs/baileys",
   "type": "module",
-  "version": "7.0.0-rc14",
-  "description": "VierTechJS maintained fork of Baileys, a WebSockets library for interacting with WhatsApp Web",
+  "version": "7.0.0-rc.14",
+  "description": "VierTechJS maintained fork of Baileys with additional WhatsApp Bot helpers, Sticker Pack support, Polling utilities, and extended WASocket functionality.",
   "keywords": [
     "whatsapp",
-    "automation"
+    "baileys",
+    "whatsapp-web",
+    "whatsapp-bot",
+    "automation",
+    "websocket",
+    "multi-device",
+    "viertech",
+    "viertechjs",
+    "sticker-pack",
+    "poll",
+    "werewolf",
+    "mafia",
+    "uno"
   ],
   "license": "MIT",
-  "author": "Harta Javier",
+  "author": {
+    "name": "Harta Javier",
+    "email": "aajavie834@gmail.com",
+    "url": "https://github.com/aa-javier"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -88,6 +104,17 @@
     "link-preview-js": "^3.0.0",
     "sharp": "*"
   },
+  "peerDependenciesMeta": {
+    "audio-decode": {
+      "optional": true
+    },
+    "jimp": {
+      "optional": true
+    },
+    "link-preview-js": {
+      "optional": true
+    }
+  },
   "resolutions": {
     "ajv@npm:^6.12.4": "^6.14.0",
     "basic-ftp": "^5.2.4",
@@ -117,24 +144,13 @@
     "underscore": "^1.13.8",
     "yaml@npm:^2.6.1": "^2.8.4"
   },
-  "peerDependenciesMeta": {
-    "audio-decode": {
-      "optional": true
-    },
-    "jimp": {
-      "optional": true
-    },
-    "link-preview-js": {
-      "optional": true
-    }
-  },
   "packageManager": "yarn@4.9.2",
   "engines": {
     "node": ">=20.0.0"
   },
   "contributors": [
     "WhiskeySockets/Baileys contributors",
-    "VierTechJS maintainers"
+    "Harta Javier <aajavie834@gmail.com>"
   ],
   "repository": {
     "type": "git",
@@ -143,5 +159,8 @@
   "homepage": "https://github.com/aa-javier/viertech-baileys#readme",
   "bugs": {
     "url": "https://github.com/aa-javier/viertech-baileys/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
