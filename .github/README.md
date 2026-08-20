@@ -1,64 +1,148 @@
-<h1><img alt="Baileys logo" src="https://raw.githubusercontent.com/aa-javier/viertech-baileys/refs/heads/main/Media/logo.png" height="75"/></h1>
+@viertechjs/baileys
 
+"@viertechjs/baileys" adalah versi modifikasi dan pengembangan dari Baileys milik "WhiskeySockets" (https://github.com/WhiskeySockets/Baileys).
 
-> [!CAUTION]
-> NOTICE OF BREAKING CHANGE.
->
-> As of 7.0.0, multiple breaking changes were introduced into the library.
->
-> Please check out https://whiskey.so/migrate-latest for more information.
+Project ini dikembangkan dan dimodifikasi lebih lanjut oleh Harta Javier untuk menambahkan berbagai fungsi tambahan, helper, dan penyesuaian yang dibutuhkan dalam pengembangan WhatsApp Bot berbasis Baileys.
 
-Baileys is a WebSockets-based TypeScript library for interacting with the WhatsApp Web API.
+Repository:
 
-Join the WhiskeySockets community via the link: https://whiskey.so/discord
+GitHub: "aa-javier/viertech-baileys"
 
-# Usage & Guide
+Tentang Project
 
-> [!IMPORTANT]
-> The new guide is a work in progress. Expect missing pages/content. [Report missing or incorrect content.](https://github.com/aa-javier/viertech-baileys/issues/new)
->
-> **You can still access the old guide here:** [README.md](https://github.com/aa-javier/viertech-baileys/blob/main/README.md), or the [NPM homepage](https://www.npmjs.com/package/@viertechjs/baileys).
+Project ini tetap mempertahankan sebagian besar struktur dan kompatibilitas API dari Baileys original, sehingga penggunaan dasar seperti "makeWASocket", event, message handling, authentication, group management, dan fitur bawaan Baileys tetap dapat digunakan.
 
-The new guide is posted at https://baileys.wiki .
+Selain fitur bawaan tersebut, "@viertechjs/baileys" dikembangkan dengan beberapa fungsi tambahan yang tidak tersedia secara langsung pada versi upstream.
 
-# Get Support
+Fitur Tambahan VierTech
 
-If you'd like business to enterprise-level support from Rajeh, the current maintainer of Baileys, you can book a video chat. Book a 1 hour time slot by contacting him on Discord or pre-ordering [here](https://purpshell.dev/book). The earlier you pre-order the better, as his time slots usually fill up very quickly. He offers immense value per hour and will answer all your questions before the time runs out.
+Beberapa fungsi tambahan yang dikembangkan pada versi ini antara lain:
 
-If you are a business, we encourage you to contribute back to the high development costs of the project and to feed the maintainers who dump tens of hours a week on this. You can do so by booking meetings or sponsoring below. All support, even in bona fide / contribution hours, is welcome by businesses of all sizes. This is not condoning or endorsing businesses to use the library. See the Disclaimer below.
+Sticker Pack
 
-# Sponsor
+Dukungan helper untuk mengirim WhatsApp Sticker Pack secara langsung.
 
-If you'd like to financially support this project, you can do so by supporting the current maintainer [here](https://purpshell.dev/sponsor).
+Fitur ini juga digunakan untuk kebutuhan game seperti UNO, di mana beberapa kartu sticker dapat dikirim sebagai satu sticker pack.
 
-# Disclaimer
-> [!CAUTION]
-> This project is not affiliated, associated, authorized, endorsed by, or in any way officially connected with WhatsApp or any of its subsidiaries or its affiliates.
-> The official WhatsApp website can be found at whatsapp.com. "WhatsApp" as well as related names, marks, emblems and images are registered trademarks of their respective owners.
->
-> The maintainers of Baileys do not in any way condone the use of this application in practices that violate the Terms of Service of WhatsApp. The maintainers of this application call upon the personal responsibility of its users to use this application in a fair way, as it is intended to be used.
-> Use at your own discretion. Do not spam people with this. We discourage any stalkerware, bulk or automated messaging usage.
+Contoh:
 
-# License
-Copyright (c) 2025 Rajeh Taher/WhiskeySockets
+await sock.sendStickerPack(jid, {
+  name: 'UNO Cards',
+  publisher: 'VierTech',
+  description: 'UNO Game Sticker Pack',
+  cover: coverBuffer,
+  stickers: [
+    {
+      buffer: sticker1,
+      emojis: ['🟥']
+    },
+    {
+      buffer: sticker2,
+      emojis: ['🟦']
+    }
+  ]
+})
 
-Licensed under the MIT License:
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Helper juga tersedia melalui export:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+import {
+  sendStickerPack
+} from '@viertechjs/baileys'
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+---
 
-Thus, the maintainers of the project can't be held liable for any potential misuse of this project.
+Polling Helper
+
+Menambahkan helper tambahan untuk menangani dan melakukan decrypt terhadap vote polling WhatsApp.
+
+Fitur ini dibuat agar implementasi polling pada bot menjadi lebih sederhana dan dapat menangani berbagai kemungkinan format JID WhatsApp seperti:
+
+- PN JID
+- LID
+- Device JID
+- Poll Creator JID
+- Voter JID
+
+Helper yang tersedia:
+
+import {
+  decryptPollVoteWithCandidates,
+  getPollMessageSecret,
+  getAggregateVotesInPollMessage
+} from '@viertechjs/baileys'
+
+Polling helper ini digunakan untuk beberapa sistem game seperti:
+
+- PG / Pilihan Ganda
+- Werewolf
+- Mafia
+
+---
+
+Instalasi
+
+Menggunakan npm:
+
+npm install @viertechjs/baileys
+
+Menggunakan yarn:
+
+yarn add @viertechjs/baileys
+
+Atau install langsung dari GitHub:
+
+npm install github:aa-javier/viertech-baileys
+
+Penggunaan
+
+import makeWASocket, {
+  DisconnectReason,
+  useMultiFileAuthState
+} from '@viertechjs/baileys'
+
+const { state, saveCreds } = await useMultiFileAuthState('./session')
+
+const sock = makeWASocket({
+  auth: state
+})
+
+sock.ev.on('creds.update', saveCreds)
+
+Sebagian besar penggunaan Baileys original tetap kompatibel dengan versi ini.
+
+Tujuan Pengembangan
+
+"@viertechjs/baileys" dikembangkan untuk:
+
+- mempertahankan kompatibilitas dengan Baileys upstream;
+- menambahkan helper yang sering dibutuhkan WhatsApp Bot;
+- mengurangi implementasi fungsi berulang pada source bot;
+- menyediakan fungsi tambahan untuk sistem game;
+- mempermudah pengembangan project berbasis WhatsApp Web Multi-Device;
+- menyediakan versi Baileys yang dapat dikembangkan lebih lanjut sesuai kebutuhan VierTech.
+
+Credits
+
+Project ini merupakan fork/modifikasi dari:
+
+WhiskeySockets/Baileys
+
+Copyright dan atribusi dari project upstream tetap dihormati sesuai dengan lisensi aslinya.
+
+Pengembangan dan modifikasi tambahan:
+
+Harta Javier — VierTech
+
+Disclaimer
+
+Project ini tidak berafiliasi, disponsori, atau didukung secara resmi oleh WhatsApp maupun Meta.
+
+WhatsApp adalah merek dagang dari pemiliknya masing-masing.
+
+License
+
+Project ini mengikuti ketentuan lisensi dari Baileys upstream dan lisensi yang disertakan di repository ini.
+
+---
+
+Developed & Modified by Harta Javier — VierTech
