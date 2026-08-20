@@ -1,78 +1,195 @@
-# Security Policy
+Security Policy
 
-## Reporting a Vulnerability
+Supported Versions
 
-**Do not file security issues as public GitHub issues, Discord posts, or PRs.** A public report is itself an exploit broadcast — many downstream projects pull this fork directly from `main` or from `github:aa-javier/viertech-baileys`, so a vulnerable version is in the wild within minutes.
+Security updates are provided for actively maintained versions of "@viertechjs/baileys".
 
-Use either of these private channels:
+Version| Supported
+Latest release| ✅
+Latest development branch| ✅
+Older releases| ⚠️ Best effort
+Unsupported / abandoned versions| ❌
 
-1. **Preferred:** [GitHub Security Advisories](https://github.com/aa-javier/viertech-baileys/security/advisories/new) on this repository. This gives us a private workspace to coordinate the fix, draft a CVE, and notify downstream projects.
-2. **Email:** **rajeh@reforward.dev** — Rajeh Taher, current maintainer. Use this if GitHub Advisories is unavailable, or if the report involves the maintainer's keys / accounts directly.
+Users are encouraged to keep "@viertechjs/baileys" updated to the latest available version.
 
-If you don't get an acknowledgement within **72 hours**, please re-send — mail filtering does occasionally swallow security reports.
+---
 
-## What to include
+Reporting a Vulnerability
 
-A useful report contains:
+If you discover a security vulnerability in "@viertechjs/baileys", please do not publish the vulnerability publicly before it has been reviewed.
 
-- **Affected versions** (commit SHA or release tag)
-- **Component**: socket, signal/crypto, auth state, message decoding, media handling, etc.
-- **Impact**: what an attacker can do (read messages, hijack sessions, impersonate, DoS, etc.) and under what preconditions
-- **Reproduction**: minimal code, captured stanza, or a deterministic test case. If repro requires a paired account or live connection, describe the setup instead — don't attach session state.
-- **Suggested fix** (optional but appreciated)
+Report security issues directly to:
 
-If a fix touches the wire protocol or signal-protocol session state, please flag that explicitly — those changes need extra coordination because they affect persisted state on every downstream user.
+Harta Javier / VierTech Solutions
 
-## What we treat as a vulnerability
+📧 Email: "aajavie834@gmail.com" (mailto:aajavie834@gmail.com)
 
-In scope:
+🌐 GitHub: https://github.com/aa-javier
 
-- Auth state / key store leakage or downgrade
-- Session, prekey, or sender-key handling that lets a remote party impersonate, replay, or decrypt outside the intended audience
-- Memory corruption / RCE via crafted stanzas, media, or protobuf payloads
-- Logic bugs that bypass intended access controls (e.g., reading messages from chats the local account isn't part of)
-- Vulnerabilities in dependencies that are reachable through Baileys' public API
-- Information disclosure (PII, message content, JIDs/phone numbers, tokens) through logs or error messages on default configurations
+📦 Repository: https://github.com/aa-javier/viertech-baileys
 
-Out of scope (please file as regular issues or PRs):
+When submitting a vulnerability report, please include as much information as possible, such as:
 
-- Bugs that only affect availability of the local process (a malformed input that throws an exception in your handler is not a CVE; a malformed input that lets a remote party crash any Baileys client is)
-- Issues in third-party WhatsApp clones or forks of Baileys
-- Behavior of WhatsApp itself — we don't control the server; report those to Meta
-- Missing rate limiting in *your* application — Baileys doesn't add rate limiting on top of WhatsApp's
-- Reports that boil down to "the library can be misused for spam." See `CODE_OF_CONDUCT.md` § Project-Specific Conduct; that's a contributions matter, not a vulnerability.
+- affected version;
+- affected file or function;
+- description of the vulnerability;
+- steps to reproduce;
+- proof of concept, if available;
+- possible impact;
+- suggested fix, if known;
+- environment information such as Node.js version and operating system.
 
-## Coordinated disclosure
+---
 
-Our default timeline:
+Responsible Disclosure
 
-| Day | Step |
-|---|---|
-| 0 | Report received, acknowledged within 72h |
-| ≤ 7 | Initial assessment shared with reporter; severity and rough timeline agreed |
-| ≤ 30 | Fix prepared on a private branch; reporter invited to validate if they want |
-| Coordinated date | Fix merged, release published, advisory + CVE published |
+Please allow reasonable time for the vulnerability to be investigated and fixed before publicly disclosing technical details.
 
-If you need to disclose sooner (e.g., active exploitation in the wild), tell us — we'll prioritize accordingly. If a fix is taking longer than 30 days, we'll keep you updated and explain why.
+Security reports will generally follow this process:
 
-We're happy to credit reporters in the advisory. Tell us how you'd like to be credited (name, handle, organization) or if you'd prefer to remain anonymous.
+1. The report is received and reviewed.
+2. The vulnerability is reproduced and evaluated.
+3. A fix is developed if necessary.
+4. A patched version is prepared.
+5. The reporter may be contacted for additional information.
+6. The fix is released.
+7. Public disclosure may occur after users have had reasonable time to update.
 
-## Supported versions
+Critical vulnerabilities may receive priority handling.
 
-Security fixes are backported to the **latest minor release line**. Older majors (≤ 6.x) are unmaintained — please upgrade. The `master` branch is also patched immediately, but downstream pinning to `master` is at your own risk for stability.
+---
 
-| Version | Supported |
-|---|---|
-| `7.x` (current) | ✅ |
-| `< 7.0` | ❌ |
+What Should Be Reported
 
-## Operational security for users
+Security reports are especially useful for issues involving:
 
-A few notes for downstream users — these aren't vulnerabilities in Baileys, but they are common ways production systems leak:
+- authentication bypass;
+- session or credential exposure;
+- unintended access to WhatsApp authentication data;
+- encryption or decryption issues;
+- malicious message handling;
+- arbitrary code execution;
+- path traversal;
+- insecure temporary file handling;
+- sensitive information disclosure;
+- unauthorized access to stored credentials;
+- vulnerabilities introduced by VierTech-specific modifications;
+- Sticker Pack processing vulnerabilities;
+- polling/decryption helper vulnerabilities;
+- dependency-related security issues that directly affect this project.
 
-- **`baileys_auth_info/` is equivalent to a long-lived credential.** Store it like an SSH private key. Don't commit it. Don't put it in container images. Encrypt it at rest if you can.
-- **Logs leak.** The default logger emits debug-level information that includes JIDs and message metadata. Set `level: 'silent'` or filter aggressively in production.
-- **Don't paste auth state into AI tools, screenshots, or support tickets.** It's not redactable — anyone with the directory contents can hijack the session.
-- **Pin a release.** Pulling `github:aa-javier/viertech-baileys` always grabs `main`. Use a tagged release in production.
+---
 
-For non-security questions, see Discord (https://discord.gg/WeJM5FP9GG) or the wiki (https://baileys.wiki).
+What Is Not Considered a Security Vulnerability
+
+The following are generally not treated as vulnerabilities in this project:
+
+- WhatsApp account bans or restrictions;
+- WhatsApp rate limits;
+- unofficial API limitations;
+- bugs caused by incorrect bot implementation;
+- exposed credentials committed by the application developer;
+- security issues caused by sharing session files publicly;
+- errors caused by unsupported Node.js versions;
+- upstream WhatsApp behavior outside the control of this library;
+- spam or abuse performed by applications using this library.
+
+---
+
+Authentication Files
+
+WhatsApp authentication credentials and session files are highly sensitive.
+
+Developers should never:
+
+- upload session folders to public repositories;
+- commit credential files to Git;
+- share authentication states publicly;
+- include credentials in bug reports;
+- expose API keys, access tokens, cookies, or session secrets.
+
+It is strongly recommended to add session and credential directories to ".gitignore".
+
+Example:
+
+session/
+sessions/
+auth/
+credentials/
+*.session
+.env
+
+---
+
+Access Tokens and API Keys
+
+If your application uses GitHub tokens, VierTech REST API keys, or other credentials, store them through environment variables.
+
+Example:
+
+VIER_API_KEY=your_api_key
+
+Do not hardcode secrets directly into source code.
+
+Avoid:
+
+const apiKey = 'my-secret-api-key'
+
+Prefer:
+
+const apiKey = process.env.VIER_API_KEY
+
+---
+
+Dependency Security
+
+"@viertechjs/baileys" depends on third-party packages and upstream components.
+
+Users should periodically check dependencies for known vulnerabilities and keep dependencies updated.
+
+For example:
+
+npm audit
+
+or:
+
+npm audit fix
+
+Review automated fixes before deploying them to production.
+
+---
+
+Upstream Security Issues
+
+"@viertechjs/baileys" is based on the Baileys project maintained by WhiskeySockets.
+
+If a security issue originates exclusively from upstream Baileys and is not caused by a VierTech modification, the issue may also need to be reported to the upstream project:
+
+https://github.com/WhiskeySockets/Baileys
+
+Issues specifically related to VierTech modifications should be reported directly to this repository.
+
+---
+
+Disclaimer
+
+"@viertechjs/baileys" is an unofficial WhatsApp Web library.
+
+This project is not affiliated with, endorsed by, sponsored by, or officially connected to WhatsApp or Meta.
+
+Users are responsible for securing their own applications, credentials, infrastructure, and deployment environments.
+
+---
+
+Security Contact
+
+Maintainer: Harta Javier
+Project: "@viertechjs/baileys"
+Organization: VierTech Solutions
+Email: "aajavie834@gmail.com" (mailto:aajavie834@gmail.com)
+Repository: https://github.com/aa-javier/viertech-baileys
+REST API: https://api.viertechsolutions.com
+
+---
+
+Last updated: August 2026
