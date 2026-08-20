@@ -1,100 +1,241 @@
-# Contributor Covenant Code of Conduct
+Code of Conduct
 
-## Our Pledge
+Our Commitment
 
-We as members, contributors, and leaders pledge to make participation in the Baileys community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+The "@viertechjs/baileys" project is committed to providing a welcoming, professional, respectful, and collaborative environment for everyone who participates in the project.
 
-We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+This project is developed and maintained by Harta Javier / VierTech Solutions and is based on the Baileys project maintained by WhiskeySockets.
 
-## Our Standards
+Everyone participating in this repository is expected to communicate respectfully and contribute constructively.
 
-Examples of behavior that contributes to a positive environment:
+---
 
-- Demonstrating empathy and kindness toward other people
-- Being respectful of differing opinions, viewpoints, and experiences
-- Giving and gracefully accepting constructive feedback
-- Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
-- Focusing on what is best for the overall community
+Expected Behavior
 
-Examples of unacceptable behavior:
+Examples of behavior that contributes to a positive community include:
 
-- Sexualized language or imagery, or sexual attention or advances of any kind
-- Trolling, insulting or derogatory comments, and personal or political attacks
-- Public or private harassment
-- Publishing others' private information without explicit permission
-- Other conduct which could reasonably be considered inappropriate in a professional setting
+- being respectful toward other contributors;
+- communicating clearly and professionally;
+- accepting constructive feedback;
+- providing useful technical information when reporting issues;
+- respecting different levels of experience;
+- helping other developers when possible;
+- keeping discussions relevant to the project;
+- acknowledging the work of other contributors;
+- respecting upstream projects and their maintainers;
+- following responsible disclosure practices for security issues.
 
-## Project-Specific Conduct
+---
 
-Baileys is a dual-use library. It can be used for legitimate automation, bots, and integrations, and it can be used for spam, stalkerware, scraping, and ToS-breaking automation. Contributions whose primary purpose is to enable abuse will be rejected. This includes but is not limited to:
+Unacceptable Behavior
 
-- Bypassing WhatsApp's anti-spam, rate-limiting, or account-restriction mechanisms
-- Mass unsolicited messaging features
-- Scraping users or contacts without their consent
-- Evasion techniques specifically designed to hide automation from WhatsApp
+The following behavior is not acceptable:
 
-Discussion of how WhatsApp's restrictions work in order to handle them gracefully (e.g., backing off when restricted, surfacing the restriction to the application) is fine and necessary. The line is intent: are we *responding to* the platform's behavior, or *defeating* it?
+- harassment or intimidation;
+- personal attacks;
+- insults or degrading comments;
+- discrimination;
+- threats;
+- deliberately disruptive behavior;
+- excessive spam;
+- publishing private information without permission;
+- impersonating maintainers or contributors;
+- maliciously submitting false vulnerability reports;
+- intentionally misleading users about this project's ownership or affiliation;
+- distributing malware or harmful code through issues, pull requests, discussions, or repository links.
 
-## AI Policy
+---
 
-This project welcomes AI-assisted contributions. Most of us use them. The rules:
+Technical Discussions
 
-1. **You are the author.** AI tools (Claude, Copilot, Cursor, Codex, ChatGPT, etc.) are tools. The human who opens the PR is responsible for every line in it — correctness, license compatibility, security implications, and adherence to the rest of this Code of Conduct. "The AI wrote it" is not a defense.
+Technical disagreements are allowed and expected in software development.
 
-2. **Disclose AI use in PRs.** A one-line note in the PR description is enough — for example: *"Drafted with Claude Code, reviewed and tested by me."* You don't need to enumerate every prompt. The point is that reviewers know to look closer at things AI tools commonly get wrong (hallucinated APIs, invented protocol details, plausible-but-wrong refactors).
+When discussing implementation decisions, contributors should focus on:
 
-3. **Review before you submit.** Don't open PRs with code you haven't read. Don't open PRs with code you don't understand well enough to defend in review. If a reviewer asks "why does this work?" and your answer is "the AI suggested it," the PR will be closed.
+- the code;
+- technical evidence;
+- reproducible behavior;
+- maintainability;
+- compatibility;
+- performance;
+- security;
+- project goals.
 
-4. **Test what the AI produced.** Run `yarn lint` and `yarn test` locally. AI tools confidently generate code that doesn't compile or doesn't pass existing tests — catch that before it hits CI.
+Avoid turning technical disagreements into personal disputes.
 
-5. **Don't paste secrets into AI tools.** This includes:
-   - `baileys_auth_info/` and any other auth/session state — these contain Signal identity keys equivalent to long-lived credentials
-   - `.env` files, API tokens, signing keys
-   - Real user phone numbers, message content, or contact lists from production systems
-   Most AI providers retain prompts for some period; treat anything you paste as published.
+For example, instead of:
 
-6. **Don't use AI to mass-generate issues, PRs, or comments.** Drive-by AI-generated PRs that "fix" non-bugs, add unnecessary tests, or reformat unrelated code waste maintainer time and will be closed without detailed review. If you're using an autonomous agent, supervise it.
+«Your implementation is terrible.»
 
-7. **Hallucinated protocol details are a security issue.** Baileys talks to a closed-source server. AI tools will confidently invent stanza shapes, attribute names, and error codes that don't exist. Verify against real captures, the existing test fixtures, or the WAProto definitions before submitting.
+Prefer:
 
-8. **License-compatible output only.** If you use an AI tool that may surface code from incompatible licenses (GPL, AGPL, proprietary), don't submit that output. We can't accept it. Baileys is MIT.
+«This implementation may cause compatibility issues because the function changes the expected return type.»
 
-Following this policy doesn't slow you down — it just keeps the bar consistent between AI-assisted and hand-written contributions.
+---
 
-## Enforcement
+Issues
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the maintainers at **rajeh@reforward.dev**. All complaints will be reviewed and investigated promptly and fairly. The maintainers are obligated to respect the privacy and security of the reporter of any incident.
+When creating an issue, please provide enough information for the problem to be reproduced.
 
-For security vulnerabilities (which are not Code of Conduct issues), see **[SECURITY.md](SECURITY.md)**.
+Useful information includes:
 
-## Enforcement Guidelines
+- "@viertechjs/baileys" version;
+- Node.js version;
+- operating system;
+- relevant error logs;
+- steps to reproduce;
+- expected behavior;
+- actual behavior;
+- minimal example code when possible.
 
-Maintainers will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:
+Do not publish:
 
-### 1. Correction
+- WhatsApp session credentials;
+- authentication files;
+- API keys;
+- access tokens;
+- passwords;
+- private user information.
 
-**Community Impact:** Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.
+---
 
-**Consequence:** A private, written warning from the maintainers, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested.
+Pull Requests
 
-### 2. Warning
+Pull requests are welcome when they improve the project.
 
-**Community Impact:** A violation through a single incident or series of actions.
+Contributors are encouraged to:
 
-**Consequence:** A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. Violating these terms may lead to a temporary or permanent ban.
+- keep changes focused;
+- explain what the pull request changes;
+- test changes before submission;
+- avoid unrelated code changes;
+- maintain compatibility where possible;
+- follow the existing project structure;
+- document new public APIs or helpers.
 
-### 3. Temporary Ban
+Large changes may be discussed in an issue before implementation.
 
-**Community Impact:** A serious violation of community standards, including sustained inappropriate behavior.
+---
 
-**Consequence:** A temporary ban from any sort of interaction or public communication with the community for a specified period of time. Violating these terms may lead to a permanent ban.
+Security Issues
 
-### 4. Permanent Ban
+Security vulnerabilities should not be disclosed publicly before the maintainer has had reasonable time to investigate them.
 
-**Community Impact:** Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals. Also: contributions or behavior aimed at enabling abuse (see § Project-Specific Conduct).
+Please follow the project's Security Policy.
 
-**Consequence:** A permanent ban from any sort of public interaction within the community.
+Security reports may be sent to:
 
-## Attribution
+aajavie834@gmail.com
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/), version 2.1, with project-specific and AI-policy sections added by the Baileys maintainers.
+Repository:
+
+https://github.com/aa-javier/viertech-baileys
+
+---
+
+WhatsApp Abuse
+
+"@viertechjs/baileys" is intended for legitimate software development.
+
+The project should not be used to encourage:
+
+- spam;
+- harassment;
+- scams;
+- phishing;
+- credential theft;
+- unauthorized account access;
+- malicious automation;
+- other abusive behavior.
+
+Users remain responsible for how they use software built with this library.
+
+---
+
+Attribution
+
+This project is a modified fork of Baileys.
+
+Contributors should not remove required copyright notices, license notices, or upstream attribution.
+
+Upstream project:
+
+https://github.com/WhiskeySockets/Baileys
+
+VierTech fork:
+
+https://github.com/aa-javier/viertech-baileys
+
+---
+
+Enforcement
+
+Project maintainers may remove, edit, or reject:
+
+- comments;
+- commits;
+- issues;
+- pull requests;
+- discussions;
+- other contributions
+
+that violate this Code of Conduct.
+
+Depending on the severity of the behavior, enforcement may include:
+
+1. a private or public warning;
+2. removal of inappropriate content;
+3. temporary restriction from project participation;
+4. permanent restriction from project participation.
+
+Decisions will be made based on the context and severity of each situation.
+
+---
+
+Scope
+
+This Code of Conduct applies to project spaces including:
+
+- GitHub Issues;
+- Pull Requests;
+- Discussions;
+- repository comments;
+- security reports;
+- community spaces officially associated with the project.
+
+It also applies when someone is publicly representing the project or VierTech Solutions.
+
+---
+
+Maintainer
+
+Harta Javier
+VierTech Solutions
+
+GitHub:
+
+https://github.com/aa-javier
+
+Project:
+
+https://github.com/aa-javier/viertech-baileys
+
+REST API:
+
+https://api.viertechsolutions.com
+
+Email:
+
+aajavie834@gmail.com
+
+---
+
+Acknowledgement
+
+This Code of Conduct is inspired by common open-source community standards and has been adapted for the "@viertechjs/baileys" project.
+
+By participating in this project, you agree to follow this Code of Conduct.
+
+---
+
+Last updated: August 2026
